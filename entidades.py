@@ -34,3 +34,11 @@ class Cita:
     veterinario_id: int
     fecha: str
     motivo: str
+
+@dataclass
+class Usuario:
+    id: int
+    nombre: str
+    usuario: str
+    contraseña: str
+    rol: str

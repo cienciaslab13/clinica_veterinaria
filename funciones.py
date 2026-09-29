@@ -167,3 +167,18 @@ def eliminar_cita(id_cita):
         return True
 
     return False
+
+from datos import usuarios
+def listar_usuarios():
+    return usuarios
+
+#Para buscar un usuario podemos crear:
+def buscar_usuario(usuario, contraseña):
+
+    for u in usuarios:
+        if u.usuario == usuario and u.contraseña == contraseña:
+            return u
+
+    return None
+
+

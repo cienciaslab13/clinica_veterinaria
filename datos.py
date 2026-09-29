@@ -1,4 +1,22 @@
-from entidades import Cliente, Mascota, Veterinario, Cita
+from entidades import Cliente, Mascota, Veterinario, Cita, Usuario
+
+usuarios = [
+    Usuario(
+        1,
+        "Administrador",
+        "admin",
+        "1234",
+        "Administrador"
+    ),
+    Usuario(
+        2,
+        "Recepción",
+        "recepcion",
+        "1234",
+        "Recepción"
+    )
+]
+
 
 
 clientes = [
