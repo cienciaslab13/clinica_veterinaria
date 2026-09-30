@@ -6,7 +6,17 @@ from entidades import Cliente, Mascota, Veterinario, Cita
 # CLIENTES
 # =========================
 
-def crear_cliente(cliente):
+def crear_cliente(nombre_cliente, telefono_cliente, correo_cliente):
+
+    id_cliente = len(clientes) + 1
+
+    cliente = Cliente(
+        id=id_cliente,
+        nombre=nombre_cliente,
+        telefono=telefono_cliente,
+        correo=correo_cliente
+    )
+
     clientes.append(cliente)
 
 
@@ -47,8 +57,27 @@ def eliminar_cliente(id_cliente):
 # MASCOTAS
 # =========================
 
-def crear_mascota(mascota):
+def crear_mascota(
+    nombre,
+    especie,
+    raza,
+    edad,
+    cliente_id
+):
+
+    id_mascota = len(mascotas) + 1
+
+    mascota = Mascota(
+        id=id_mascota,
+        nombre=nombre,
+        especie=especie,
+        raza=raza,
+        edad=edad,
+        cliente_id=cliente_id
+    )
+
     mascotas.append(mascota)
+
 
 
 def listar_mascotas():

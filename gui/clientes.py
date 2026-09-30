@@ -1,6 +1,8 @@
 import flet as ft
+from gui.cliente_form import mostrar_formulario_cliente
 
 from funciones import listar_clientes
+
 
 
 def mostrar_clientes(page: ft.Page):
@@ -23,6 +25,41 @@ def mostrar_clientes(page: ft.Page):
             ) for cliente in clientes
         ]
     )
+    def actualizar_clientes():
+        clientes = listar_clientes()
+        tabla.rows.clear()
+        for cliente in clientes:
+            tabla.rows.append(
+                ft.DataRow(
+                    cells=[
+                        ft.DataCell(ft.Text(cliente.nombre)),
+                        ft.DataCell(ft.Text(cliente.telefono)),
+                        ft.DataCell(ft.Text(cliente.correo))
+                    ]
+                )
+            )
+        page.update()
+
+    #Metodo para abrir el formulario de nuevo cliente
+    def abrir_formulario(e):
+        formulario = mostrar_formulario_cliente(
+            page,
+            actualizar_clientes
+        )
+        dialogo = ft.AlertDialog(
+            modal=True,
+            title=ft.Text("Nuevo cliente"),
+            content=formulario
+        )
+        page.show_dialog(dialogo)
+        #page.update()
+
+
+    boton_nuevo = ft.Button(
+    "Nuevo cliente",
+    icon=ft.Icons.ADD,
+     on_click=abrir_formulario
+    )   
 
 
 
@@ -33,6 +70,7 @@ def mostrar_clientes(page: ft.Page):
                 size=28,
                 weight=ft.FontWeight.BOLD
             ),
+           # boton_nuevo,
             tabla
         ]
     )

@@ -24,19 +24,12 @@ def main(page: ft.Page):
     # -------------------------------------------------
 
     def cambiar_pantalla(e):
-
         if e.control.selected_index == 0:
-
             contenido.content = mostrar_dashboard(page)
-
         elif e.control.selected_index == 1:
-
             contenido.content = mostrar_clientes(page)
-
         elif e.control.selected_index == 2:
-
             contenido.content = mostrar_mascotas(page)
-
         page.update()
 
     # -------------------------------------------------
