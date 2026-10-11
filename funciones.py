@@ -99,7 +99,7 @@ def actualizar_mascota(id_mascota, nombre, especie, raza, edad, cliente_id):
         mascota.especie = especie
         mascota.raza = raza
         mascota.edad = edad
-        mascota.cliente_id = cliente_id
+       # mascota.cliente_id = cliente_id
         return True
 
     return False

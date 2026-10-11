@@ -1,9 +1,9 @@
 import flet as ft
 
-from funciones import crear_mascota
+from funciones import crear_mascota, buscar_cliente
 
 
-def mostrar_formulario_mascota(page: ft.Page, on_guardado):
+def mostrar_formulario_mascota(page: ft.Page, on_guardado, mascota=None):
     #Campos del formulario
     nombre = ft.TextField(
         label="Nombre"
@@ -25,6 +25,13 @@ def mostrar_formulario_mascota(page: ft.Page, on_guardado):
         label="ID del Cliente"
     )
 
+    if mascota:
+        nombre.value = mascota.nombre
+        especie.value = mascota.especie
+        raza.value = mascota.raza
+        edad.value = str(mascota.edad)
+        cliente_id.value = buscar_cliente(mascota.cliente_id).nombre
+
     #metodo para guardar los datos del cliente
 
     def guardar(e):
@@ -34,14 +41,28 @@ def mostrar_formulario_mascota(page: ft.Page, on_guardado):
         edad_mascota = edad.value
         cliente_id_mascota = cliente_id.value
 
-        crear_mascota(
-            nombre_mascota,
-            especie_mascota,
-            raza_mascota,
-            edad_mascota,
-            cliente_id_mascota
-        )
-        mensaje.value = "Mascota registrada correctamente."
+        if mascota:
+            # Actualizar mascota existente
+            from funciones import actualizar_mascota
+            actualizar_mascota(
+                mascota.id,
+                nombre_mascota,
+                especie_mascota,
+                raza_mascota,
+                edad_mascota,
+                cliente_id_mascota
+            )
+            mensaje.value = "Mascota actualizada correctamente."
+        else:
+            crear_mascota(
+                nombre_mascota,
+                especie_mascota,
+                raza_mascota,
+                edad_mascota,
+                cliente_id_mascota
+            )
+            mensaje.value = "Mascota registrada correctamente."
+        
         mensaje.color = ft.Colors.GREEN
         page.update()
         on_guardado()

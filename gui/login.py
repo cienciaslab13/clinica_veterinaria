@@ -71,35 +71,42 @@ def mostrar_login(page: ft.Page, on_login_success):
     )
 
     return ft.Container(
-        content=ft.Column(
-            controls=[
-                ft.Icon(
-                    icon=ft.Icons.PETS,
-                    size=60,
-                    color=ft.Colors.BLUE
-                ),
-
-                ft.Text(
-                    "Clínica Veterinaria",
-                    size=28,
-                    weight=ft.FontWeight.BOLD
-                ),
-
-                ft.Text(
-                    "Iniciar sesión",
-                    size=20
-                ),
-
-                usuario,
-                contraseña,
-                boton,
-                mensaje
-            ],
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=15
-        ),
-
-        alignment=ft.Alignment.CENTER,
-        expand=True
-    )
-
+            # Imagen de fondo principal
+            image=ft.DecorationImage(
+                src="https://picsum.photos/1200/1300",
+                fit=ft.BoxFit.COVER
+            ),
+            alignment=ft.Alignment.CENTER,
+            expand=True,
+            # Contenedor interno estilo "tarjeta" semitransparente para el formulario
+            content=ft.Container(
+                bgcolor=ft.Colors.with_opacity(0.8, ft.Colors.WHITE),
+                border_radius=ft.BorderRadius.all(10),
+                padding=30,  # Espacio interno para que no quede pegado a los bordes
+                content=ft.Column(
+                    controls=[
+                        ft.Icon(
+                            icon=ft.Icons.PETS,
+                            size=60,
+                            color=ft.Colors.BLUE
+                        ),
+                        ft.Text(
+                            "Clínica Veterinaria",
+                            size=28,
+                            weight=ft.FontWeight.BOLD
+                        ),
+                        ft.Text(
+                            "Iniciar sesión",
+                            size=20
+                        ),
+                        usuario,
+                        contraseña,
+                        boton,
+                        mensaje
+                    ],
+                    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=15,
+                    tight=True  # Ajusta el tamaño de la columna al contenido de sus hijos
+                )
+            )
+        )
